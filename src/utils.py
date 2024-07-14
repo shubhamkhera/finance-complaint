@@ -1,5 +1,5 @@
 # Reading and Writing YAML file
-import os, sys, utils, yaml
+import os, sys, yaml
 from src.exception import FinanceException
 
 def write_yaml_file(file_path: str, data: dict = None):

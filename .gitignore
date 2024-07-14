@@ -1,7 +1,11 @@
 # here
 *.egg-info
 fcvenv
-
+notebook/data/
+notebook/catboost_info
+*.ipynb_checkpoints
+*.json
+*.parquet
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

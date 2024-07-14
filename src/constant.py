@@ -1,5 +1,7 @@
 from dataclasses import dataclass
 from datetime import datetime
+import os
+
 TIMESTAMP = datetime.now().strftime("%Y%m%d_%H%M%S")
 
 @dataclass #it allows us to declare a class without an init function
