@@ -15,7 +15,7 @@ DATA_INGESTION_FAILED_DIR = "failed_download_files"
 DATA_INGESTION_METADATA_FILE_NAME = "meta_info.yaml"
 DATA_INGESTION_MIN_START_DATE = "2022-05-01"
 DATA_INGESTION_DATA_SOURCE_URL = f"https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/" \
-                            f"?date_recieved_max=<todate>&date_recieved_min=<fromdate>"\
+                            f"?company_received_max=<todate>&company_received_min=<fromdate>"\
                             f"&field=all&format=json"
 
 
@@ -27,7 +27,7 @@ class TrainingPipelineConfig:
 
 # Data Ingestion Config
 class DataIngestionConfig:
-    def __init_(self, training_pipeline_config: TrainingPipelineConfig,
+    def __init__(self, training_pipeline_config: TrainingPipelineConfig,
                 from_date=DATA_INGESTION_MIN_START_DATE, 
                 to_date=None):
         try:
@@ -37,7 +37,7 @@ class DataIngestionConfig:
             if from_date_obj < min_start_date:
                 self.from_date = DATA_INGESTION_MIN_START_DATE
             if to_date is None:
-               self.to_date = datetime.now().strftime("%Y-%m-%d")
+               self.to_date = "2022-05-30" # datetime.now().strftime("%Y-%m-%d")
 
             data_ingestion_master_dir = os.path.join(os.path.dirname(training_pipeline_config.artifact_dir),
                                                     DATA_INGESTION_DIR)
@@ -53,13 +53,13 @@ class DataIngestionConfig:
             self.download_dir = os.path.join(self.data_ingestion_dir, DATA_INGESTION_DOWNLOAD_DATA_DIR)
             self.failed_dir = os.path.join(self.data_ingestion_dir, DATA_INGESTION_FAILED_DIR)
             self.file_name = DATA_INGESTION_FILE_NAME
-            self.feature_Store_dir = os.path.join(data_ingestion_master_dir, DATA_INGESTION_FEATURE_STORE_DIR)
+            self.feature_store_dir = os.path.join(data_ingestion_master_dir, DATA_INGESTION_FEATURE_STORE_DIR)
             self.datasource_url = DATA_INGESTION_DATA_SOURCE_URL
         except Exception as e:
             raise FinanceException(e, sys)
-         
-         
-         
+        
+
+
 
 
 

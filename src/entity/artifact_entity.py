@@ -3,7 +3,7 @@ import os
 
 from dataclasses import dataclass
 from src.entity.config_entity import DataIngestionConfig
-from src.logger import logging
+from src.logger import logger
 from src.exception import FinanceException
 
 @dataclass

@@ -1,7 +1,7 @@
 import os, sys
 
 from src.exception import FinanceException
-from src.logger import logging
+from src.logger import logger
 from src.utils import write_yaml_file, read_yaml_file
 
 from collections import namedtuple
@@ -11,11 +11,11 @@ DataIngestionMetadataInfo = namedtuple("DataIngestionMetadataInfo",
 
 class DataIngestionMetadata:
 
-    def __init__(self, metadata_file_path) -> None:
+    def __init__(self, metadata_file_path, ):
         self.metadata_file_path = metadata_file_path
 
     @property
-    def is_metadata_file_present(self)->bool:
+    def is_metadata_file_present(self) -> bool:
         return os.path.exists(self.metadata_file_path)
     
     def write_metadata_info(self, from_date: str, to_date: str, data_file_path: str):
@@ -35,7 +35,7 @@ class DataIngestionMetadata:
                 raise Exception("No metadata file available")
             metadata = read_yaml_file(self.metadata_file_path)
             metadata_info = DataIngestionMetadata(**(metadata))
-            logging.info(metadata)
+            logger.info(metadata)
             return metadata_info
 
         except Exception as e:

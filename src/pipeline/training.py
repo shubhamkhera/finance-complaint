@@ -1,13 +1,20 @@
 import sys
 from src.component.data_ingestion import DataIngestion
 from src.exception import FinanceException
-from src.logger import logging
+from src.logger import logger
 from src.entity.config_entity import DataIngestionConfig, TrainingPipelineConfig
 from src.entity.artifact_entity import DataIngestionArtifact
+from src.entity.metadata_entity import DataIngestionMetadata
 
 class TrainingPipeline:
     def __init__(self, training_pipeline_config: TrainingPipelineConfig):
         self.training_pipeline_config: TrainingPipelineConfig = training_pipeline_config
+
+    # def start_metadata(self) -> DataIngestionMetadata:
+    #     try:
+    #         meta_data_config = DataIngestionMetadata(TrainingPipeline=self.training_pipeline_config)
+    #         meta_data = 
+
 
     def start_data_ingestion(self) -> DataIngestionArtifact:
         try:
